@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to right, rgba(161, 196, 253, 0.5), rgba(194, 233, 251, 0.5));
+  overflow: hidden;
+}
+
+div#listContainer {
+  width: 660px;
+  height: 680px;
+  border-radius: 0.7rem;
+}
+div#listControls input#toDoInput {
+  padding: 0.6rem 0.75rem !important;
+}
+div#listControls input#toDoInput:focus {
+  border-color: #343a40 !important;
+}
+div#listControls button#addToDo {
+  transition: all 0.4s;
+}
+div#listControls button#addToDo:hover {
+  border-color: rgba(161, 196, 253, 0.5) !important;
+  background-color: rgba(161, 196, 253, 0.5);
+  color: #343a40 !important;
+}
+div#listBody {
+  overflow: auto;
+  margin-bottom: 15px;
+}
+div#listBody ::-webkit-scrollbar {
+  width: 10px;
+}
+div#listBody ::-webkit-scrollbar-track {
+  background: #fff;
+}
+div#listBody ::-webkit-scrollbar-thumb {
+  background: black;
+}
+div#listBody ::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+div#listBody ul {
+  margin: 0.6rem !important;
+}
+div#listBody label {
+  font-size: 1.3rem;
+}
+div#listBody label input {
+  width: 1.3em;
+  height: 1.3em;
+}
+div#listBody label input:checked {
+  background-color: #198754;
+  border-color: #198754;
+}
+div#listBody label input:focus {
+  border-color: rgba(0, 0, 0, 0.25) !important;
+}
