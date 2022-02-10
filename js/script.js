@@ -3,8 +3,9 @@
 $(function(){
   let editMode = false;
 
+  // Display Tasks Count
   function changeCount() {
-    let tasksCount = $('#listBody ul').children().length;
+    let tasksCount = $('#listBody div#tasksContainer').children().length;
     let doneTasksCount = $('.done').length;
     if(tasksCount === 0 && doneTasksCount === 0) {
       $('#tasksCompleted').text('Feeling productive?');
@@ -15,13 +16,37 @@ $(function(){
     }
   }
 
-  changeCount();
+  // Add Event listeners; since we'll be creating new elements
+  function addListeners() {
+    
+    new Sortable($('#tasksContainer')[0], {
+      animation: 150
+    });
 
+    $('input[type="checkbox"]').change(function(){
+      if (editMode) return;
+
+      const listText = $(this).prev()[0];
+      const inputVal = $(listText).text();
+      if (this.checked) {  
+        $(listText).html(`<span class="text-muted done task-name"<del>${inputVal}</del></span>`)
+      } else {
+        $(listText).html(`<span class="task-name">${inputVal}</span>`)
+      }
+      changeCount();
+    });
+
+    $('.delete-task').click(function(){
+      $(this).parent().remove();
+      changeCount();
+    });
+  }
+
+  // Edit and Delete
   $('#deleteAll').click(function(){
-    $('#listBody ul').empty();
+    $('#listBody div#tasksContainer').empty();
     changeCount();
   })
-
   $('#editTasks').click(function(){
     if(!editMode) {
       $('.delete-task').removeClass('d-none');
@@ -29,9 +54,6 @@ $(function(){
 
       $('.task-done').removeClass('d-block');
       $('.task-done').addClass('d-none');
-
-      $('.task-name').removeAttr('readonly');
-      $('.task-name').parent().addClass('edit-input');
 
       $('.task-done').attr('disabled', true);
       $('.delete-task').removeAttr('disabled');
@@ -44,9 +66,6 @@ $(function(){
       $('.task-done').removeClass('d-none');
       $('.task-done').addClass('d-block');
 
-      $('.task-name').parent().removeClass('edit-input');
-      $('.task-name').attr('readonly', true);
-
       $('.delete-task').attr('disabled', true);
       $('.task-done').removeAttr('disabled');
 
@@ -54,13 +73,13 @@ $(function(){
     }
   });
 
+  // Adding Tasks
   $('#addToDo').click(function(){
     const inputVal = $('#toDoInput').val();
     if (inputVal === '') return;
-    
-    $('#listBody ul').append(`
+    $('#listBody div#tasksContainer').append(`
     <label class="list-group-item py-2 ps-3 d-flex">
-      <div class="${editMode ? "edit-input" : ""}"><input type="text" value="${inputVal}" maxlength="50" class="task-name" ${editMode ? "" : "readonly"} /></div>
+      <span class="task-name">${inputVal}</span>
       ${editMode 
         ? '<input type="checkbox" class="form-check-input ms-auto me-1 shadow-none task-done d-none" disabled/> \
         <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-block" alt="delete task" />' 
@@ -69,48 +88,15 @@ $(function(){
     </label>
     `);
     
-    $('input[type="checkbox"]').change(function(){
-      if (editMode) return;
-
-      const listText = $(this).prev()[0];
-      const inputVal = $($(listText).children()[0]).val();
-      if (this.checked) {  
-        $(listText).html(`<input type="text" value="${inputVal}" maxlength="50" class="text-muted done task-name" readonly />`)
-      } else {
-        $(listText).html(`<input type="text" value="${inputVal}" maxlength="50" class="task-name" readonly />`)
-      }
-      changeCount();
-    });
-
-    $('.delete-task').click(function(){
-      $(this).parent().remove();
-      changeCount();
-    });
-
+    addListeners();
     changeCount();
+
     $('#toDoInput').val('');
   });
-  
-  // saved list
-  $('input[type="checkbox"]').change(function(){
-      if (editMode) return;
-      
-      const listText = $(this).prev()[0];
-      const inputVal = $($(listText).children()[0]).val();
-      if (this.checked) {  
-        $(listText).html(`<input type="text" value="${inputVal}" maxlength="50" class="text-muted done task-name" readonly />`)
-      } else {
-        $(listText).html(`<input type="text" value="${inputVal}" maxlength="50" class="task-name" readonly />`)
-      }
-      changeCount();
-    });
-
-  $('.delete-task').click(function(){
-    $(this).parent().remove();
-    changeCount();
-  });
-  
   $('#toDoInput').keypress(function(e){
     if (e.key === 'Enter') $('#addToDo').click();
   });
+
+  addListeners();
+  changeCount();
 });

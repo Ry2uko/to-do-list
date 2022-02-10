@@ -9,7 +9,7 @@
 
     <link rel="icon" type="image/x-icon" href="/img/icon/favicon.png">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div class="container-fluid d-flex justify-content-center align-items-center h-100 flex-column">
@@ -17,22 +17,27 @@
       <div id="listContainer" class="bg-white shadow d-flex flex-column">
         <div id="listHeader" class="border-bottom border-secondary">
           <h2 id="tasksCompleted" class="h3 color-dblue text-center mb-0">0 out of 0 tasks completed</h2>
-          <input type="image" id="editTasks" src="img/icon/pen-to-square-solid.svg" alt="edit tasks" title="Edit"/>
-          <input type="image" id="deleteAll" src="img/icon/trash-can-solid.svg" alt="delete all tasks" title="Delete All"/>
+          <input type="image" id="editTasks" src="img/icon/pen-to-square-solid.svg" 
+          alt="edit tasks" title="Edit" />
+          <input type="image" id="deleteAll" src="img/icon/trash-can-solid.svg" 
+          alt="delete all tasks" title="Delete All" />
         </div>
         <div id="listBody" class="flex-fill">
-          <ul class="list-group"></ul>
+          <div class="list-group" id="tasksContainer"></div>
         </div>
         <div id="listControls" class="row d-flex justify-content-center mt-auto mb-4">
           <div class="col-9">
-            <input type="text" class="form-control rounded-pill shadow-none" placeholder="Add Todo..." id="toDoInput" /></div>
+            <input type="text" class="form-control rounded-pill shadow-none" 
+            placeholder="Add Todo..." id="toDoInput" maxlength="50"/></div>
           <div class="col-2">
-            <button type="button" class="btn border border-secondary px-4 py-2 h-100 rounded-pill shadow-none" id="addToDo">Add</button>    
+            <button type="button" class="btn border border-secondary px-4 py-2 h-100 rounded-pill shadow-none" 
+            id="addToDo">Add</button>    
           </div>
         </div>
       </div>
     </div>
 
+    <script src="js/sortable/sortable.min.js"></script>
     <script src="js/jquery/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
   </body>
