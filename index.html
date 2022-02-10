@@ -7,15 +7,18 @@
 
     <title>To-Do List</title>
 
-    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/img/icon/favicon.png">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="container-fluid d-flex justify-content-center align-items-center h-100">
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100 flex-column">
+      <h1 class="text-center user-select-none">To-Do List</h1>
       <div id="listContainer" class="bg-white shadow d-flex flex-column">
         <div id="listHeader" class="border-bottom border-secondary">
-          <h1 class="display-6 text-center my-3">To-Do List</h1>
+          <h2 id="tasksCompleted" class="h3 color-dblue text-center mb-0">0 out of 0 tasks completed</h2>
+          <input type="image" id="editTasks" src="img/icon/pen-to-square-solid.svg" alt="edit tasks" title="Edit"/>
+          <input type="image" id="deleteAll" src="img/icon/trash-can-solid.svg" alt="delete all tasks" title="Delete All"/>
         </div>
         <div id="listBody" class="flex-fill">
           <ul class="list-group"></ul>
