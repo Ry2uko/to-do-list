@@ -1,5 +1,6 @@
 // Hacked by @Ryuko :D
 $(function(){
+  
   $('#addToDo').click(function(){
     const inputVal = $('#toDoInput').val();
     
@@ -24,6 +25,17 @@ $(function(){
     
     $('#toDoInput').val('');
   });
+  
+  // saved list
+  $('input[type="checkbox"]').change(function(){
+      const listText = $(this).prev()[0];
+      const textVal = $(listText).text();
+      if (this.checked) {  
+        $(listText).html(`<del class="text-muted">${textVal}</del>`)
+      } else {
+        $(listText).html(`${textVal}`)
+      }
+    });
   
   $('#toDoInput').keypress(function(e){
     if (e.key === 'Enter') $('#addToDo').click();

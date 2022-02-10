@@ -51,6 +51,20 @@ div#listBody ul {
 }
 div#listBody label {
   font-size: 1.3rem;
+  transition: all 0.1s;
+}
+div#listBody label.list-group-item:hover {
+  background-color: #fdfdfd;
+}
+div#listBody label.list-group-item:hover input {
+  background-color: #fdfdfd !important;
+}
+div#listBody label.list-group-item:hover input:checked {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+div#listBody label.list-group-item:hover input:focus {
+  border-color: rgba(0, 0, 0, 0.25) !important;
 }
 div#listBody label input {
   width: 1.3em;

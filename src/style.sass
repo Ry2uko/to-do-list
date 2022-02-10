@@ -2,6 +2,7 @@ $theme-blue1: rgba(161, 196, 253, 0.5)
 $theme-blue2: rgba(194, 233, 251, 0.5)
 $bs-secondary: #343a40
 $bs-muted: #777
+$bs-muted2: #fdfdfd
 $bs-success: #198754
 
 *
@@ -49,7 +50,21 @@ div
       margin: .6rem !important
     label
       font-size: 1.3rem
+      transition: all 0.1s
       
+      &.list-group-item:hover
+        background-color: $bs-muted2
+        
+      &.list-group-item:hover input
+        background-color: $bs-muted2 !important
+        
+      &.list-group-item:hover input:checked
+        background-color: $bs-success !important
+        border-color: $bs-success !important
+        
+      &.list-group-item:hover input:focus
+        border-color: rgba(0,0,0,.25) !important
+        
       input
         width: 1.3em
         height: 1.3em
