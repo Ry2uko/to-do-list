@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -49,7 +50,7 @@ div#listHeader input#editTasks {
   transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
   transition: transform 0.2s, -webkit-transform 0.2s;
-  margin: 8px 50px;
+  margin: 8px 51px;
 }
 
 div#listHeader input#editTasks:hover {
@@ -148,7 +149,7 @@ div#listBody label span.task-name {
   line-height: 45px;
 }
 
-div#listBody label span.done {
+div#listBody label span.done del {
   text-decoration: line-through !important;
 }
 
@@ -168,6 +169,14 @@ div#listBody label input[type="checkbox"]:focus {
   border-color: rgba(0, 0, 0, 0.25) !important;
 }
 
+div#listBody label input.edit-task-name {
+  margin-bottom: -4px !important;
+  margin-left: 5px !important;
+  width: 1em !important;
+  height: 1em !important;
+  opacity: 0.7;
+}
+
 div#listBody label input[type="image"] {
   display: none;
   margin-left: auto;
@@ -178,5 +187,9 @@ div#listBody label input[type="image"] {
 
 div#listBody label input[type="image"]:hover {
   background-color: #fdfdfd;
+}
+
+label, input[type="text"] {
+  font-family: 'Ubuntu', sans-serif;
 }
 /*# sourceMappingURL=styles.css.map */

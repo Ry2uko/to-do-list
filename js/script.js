@@ -86,6 +86,16 @@ $(function(){
       localStorage.setItem('savedList', JSON.stringify(parsedList));
       changeCount();
     });
+
+    $('.edit-task-name').click(function() {
+      const valText = $($(this).prev()[0]).text();
+      const taskId = $(this).parent().parent().attr('id');
+      $('#editNameModal').modal('show');
+
+      $('#modalInput')
+      .val(valText)
+      .attr('taskId', taskId);
+    });
   }
 
   // Saved List (localStorage)
@@ -97,9 +107,12 @@ $(function(){
         <label class="list-group-item py-2 ps-3 d-flex" id="${task.id}">
           ${ 
             task.done 
-              ? `<span class="text-muted done task-name"><del>${task.name}</del></span>` 
-              : `<span class="task-name">${task.name}</span>`
+              ? `<span class="text-muted done task-name"><del>${task.name}</del>` 
+              : `<span class="task-name"><span>${task.name}</span>`
           }
+          <input type="image" class="edit-task-name" src="img/icon/pen-to-square-solid.svg" 
+          alt="edit task name" title="Edit Name" />
+          </span>
           <input type="checkbox" class="form-check-input ms-auto me-1 shadow-none task-done d-block" ${task.done ? "checked" : ""}/> 
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-none" alt="delete task" />
         </label>
@@ -118,6 +131,9 @@ $(function(){
       $('.delete-task').removeClass('d-none');
       $('.delete-task').addClass('d-block');
 
+      $('.edit-task-name').removeClass('d-none');
+      $('.edit-task-name').addClass('d-inline-block');
+
       $('.task-done').removeClass('d-block');
       $('.task-done').addClass('d-none');
 
@@ -129,6 +145,9 @@ $(function(){
       $('.delete-task').removeClass('d-block');
       $('.delete-task').addClass('d-none');
 
+      $('.edit-task-name').removeClass('d-inline-block');
+      $('.edit-task-name').addClass('d-none');
+
       $('.task-done').removeClass('d-none');
       $('.task-done').addClass('d-block');
 
@@ -139,6 +158,31 @@ $(function(){
     }
   });
 
+  // Editing Task Name
+  $('#modalInput').change(function(){
+    
+  });
+
+  $('#editNameModal').on('hidden.bs.modal', function(){
+    const inputVal = $('#modalInput').val();
+    const taskId = $('#modalInput').attr('taskId');
+
+    const savedList = localStorage.getItem('savedList');
+    const parsedList = JSON.parse(savedList);
+
+    $('#modalInput').attr('taskId', '');
+    $($(`label[id="${taskId}"] span.task-name`).children()[0]).text(inputVal);
+
+    for (let i = 0; i < parsedList.length; i++) {
+      if (parsedList[i].id === taskId) {
+        parsedList[i].name = inputVal;
+        break;
+      }
+    }
+
+    localStorage.setItem('savedList', JSON.stringify(parsedList));
+  })
+
   // Adding Tasks
   $('#addToDo').click(function(){
     const inputVal = $('#toDoInput').val();
@@ -147,7 +191,11 @@ $(function(){
 
     $('#listBody div#tasksContainer').append(`
       <label class="list-group-item py-2 ps-3 d-flex" id="${eleId}">
-        <span class="task-name">${inputVal}</span>
+        <span class="task-name">
+          <span>${inputVal}</span>
+          <input type="image" class="edit-task-name" src="img/icon/pen-to-square-solid.svg" 
+          alt="edit task name" title="Edit Name"/>
+        </span>
         ${editMode 
           ? '<input type="checkbox" class="form-check-input ms-auto me-1 shadow-none task-done d-none" disabled/> \
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-block" alt="delete task" />' 
