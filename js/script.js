@@ -159,8 +159,8 @@ $(function(){
   });
 
   // Editing Task Name
-  $('#modalInput').change(function(){
-    
+  $('#modalInput').keypress(function(e){
+    if (e.key === 'Enter') $('#editNameModal').modal('hide');
   });
 
   $('#editNameModal').on('hidden.bs.modal', function(){
