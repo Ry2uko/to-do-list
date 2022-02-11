@@ -12,12 +12,28 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+
+    <!-- Popup Modal When Editing Task Name-->
+    <div class="modal fade" id="editNameModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title display-6">Edit Task Name...</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <input type="text" id="modalInput" class="form-control form-control-lg shadow-none" placeholder="Edit task..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container-fluid d-flex justify-content-center align-items-center h-100 flex-column">
       <h1 class="text-center user-select-none">To-Do List</h1>
       <div id="listContainer" class="bg-white shadow d-flex flex-column">
         <div id="listHeader" class="border-bottom border-secondary">
           <h2 id="tasksCompleted" class="h3 color-dblue text-center mb-0">Feeling productive?</h2>
-          <input type="image" id="editTasks" src="img/icon/pen-to-square-solid.svg" 
+          <input type="image" id="editTasks" src="img/icon/pencil-solid.svg" 
           alt="edit tasks" title="Edit" />
           <input type="image" id="deleteAll" src="img/icon/trash-can-solid.svg" 
           alt="delete all tasks" title="Delete All" />
@@ -37,6 +53,7 @@
       </div>
     </div>
 
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/sortable/sortable.min.js"></script>
     <script src="js/jquery/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
