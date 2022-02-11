@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap')
+
+$theme-blue1: rgba(161, 196, 253, 0.5)
+$theme-blue2: rgba(194, 233, 251, 0.5)
+$theme-dark-blue: #00556e
+$bs-secondary: #343a40
+$bs-muted: #777
+$bs-muted2: #fdfdfd
+$bs-success: #198754
+
+@mixin iconDefault() 
+  position: absolute
+  right: 0 
+  bottom: 0
+  width: 27px
+  height: 27px
+  opacity: 0.9
+  transition: transform 0.2s
+
+  &:hover
+    transform: scale(1.10)
+
+*
+  box-sizing: border-box
+
+html, body
+  height: 100%
+
+body
+  background: linear-gradient(to right, $theme-blue1, $theme-blue2)
+  overflow: hidden
+
+h1
+  font:
+    family: 'Josefin Sans', sans-serif !important
+    size: 3.2rem !important
+  color:  $theme-dark-blue !important
+  position: absolute
+  top: 0
+  margin: 1.7rem 0 !important
+
+h2
+  margin-top: 5px !important
+  font-size: 1.9rem !important
+
+.color-dblue
+  color: $theme-dark-blue !important
+  font-family: 'Josefin Sans', sans-serif !important
+
+div
+  &#listHeader
+    position: relative
+    padding: 1.6rem 0 
+
+    input#editTasks
+      @include iconDefault()
+      margin: 8px 50px
+
+    input#deleteAll
+      @include iconDefault()
+      margin: 8px 15px
+      
+  &#listContainer
+    width: 660px
+    height: 680px
+    border-radius: .7rem 
+
+  &#listControls
+    input#toDoInput
+      padding: .6rem .75rem !important
+      
+      &:focus
+        border-color: $bs-secondary !important
+      
+    button#addToDo
+      transition: all 0.4s
+      &:hover
+        border-color: $theme-blue1 !important
+        background-color: $theme-blue1
+        color: $bs-secondary !important
+
+  &#listBody
+    overflow: auto
+    margin-bottom: 15px
+    
+    div#tasksContainer
+      margin: .6rem !important
+
+    label
+      font-size: 1.3rem
+      transition: all 0.1s
+      
+      &.list-group-item:hover
+        background-color: $bs-muted2
+        
+      &.list-group-item:hover input
+        background-color: $bs-muted2 !important
+        
+      &.list-group-item:hover input:checked
+        background-color: $bs-success !important
+        border-color: $bs-success !important
+        
+      &.list-group-item:hover input:focus
+        border-color: rgba(0,0,0,.25) !important
+
+      span
+        user-select: none !important
+        &.task-name
+          flex: 1
+          margin-right: 20px
+          line-height: 45px
+
+        &.done
+          text-decoration: line-through !important
+
+      input
+        &[type="checkbox"]
+          cursor: pointer
+          width: 1.5em
+          height: 1.5em
+          margin-top: 8px
+
+          &:checked
+            background-color: $bs-success
+            border-color: $bs-success
+          
+          &:focus
+            border-color: rgba(0,0,0,.25) !important
+
+        &[type="image"]
+          display: none
+          margin-left: auto
+          margin-top: 4px
+          width: 2em
+          height: 2em
+          
+          &:hover
+            background-color: $bs-muted2
