@@ -111,37 +111,37 @@ div#listBody div#tasksContainer {
   margin: .6rem !important;
 }
 
-div#listBody label {
+div#listBody div.list-group-item {
   font-size: 1.3rem;
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
 }
 
-div#listBody label.list-group-item:hover {
+div#listBody div.list-group-item.list-group-item:hover {
   background-color: #fdfdfd;
 }
 
-div#listBody label.list-group-item:hover input {
+div#listBody div.list-group-item.list-group-item:hover input {
   background-color: #fdfdfd !important;
 }
 
-div#listBody label.list-group-item:hover input:checked {
+div#listBody div.list-group-item.list-group-item:hover input:checked {
   background-color: #198754 !important;
   border-color: #198754 !important;
 }
 
-div#listBody label.list-group-item:hover input:focus {
+div#listBody div.list-group-item.list-group-item:hover input:focus {
   border-color: rgba(0, 0, 0, 0.25) !important;
 }
 
-div#listBody label span {
+div#listBody div.list-group-item span {
   -webkit-user-select: none !important;
      -moz-user-select: none !important;
       -ms-user-select: none !important;
           user-select: none !important;
 }
 
-div#listBody label span.task-name {
+div#listBody div.list-group-item span.task-name {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -149,27 +149,27 @@ div#listBody label span.task-name {
   line-height: 45px;
 }
 
-div#listBody label span.done del {
+div#listBody div.list-group-item span.done {
   text-decoration: line-through !important;
 }
 
-div#listBody label input[type="checkbox"] {
+div#listBody div.list-group-item input[type="checkbox"] {
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
   margin-top: 8px;
 }
 
-div#listBody label input[type="checkbox"]:checked {
+div#listBody div.list-group-item input[type="checkbox"]:checked {
   background-color: #198754;
   border-color: #198754;
 }
 
-div#listBody label input[type="checkbox"]:focus {
+div#listBody div.list-group-item input[type="checkbox"]:focus {
   border-color: rgba(0, 0, 0, 0.25) !important;
 }
 
-div#listBody label input.edit-task-name {
+div#listBody div.list-group-item input.edit-task-name {
   margin-bottom: -4px !important;
   margin-left: 5px !important;
   width: 1em !important;
@@ -177,7 +177,7 @@ div#listBody label input.edit-task-name {
   opacity: 0.7;
 }
 
-div#listBody label input[type="image"] {
+div#listBody div.list-group-item input[type="image"] {
   display: none;
   margin-left: auto;
   margin-top: 4px;
@@ -185,11 +185,11 @@ div#listBody label input[type="image"] {
   height: 2em;
 }
 
-div#listBody label input[type="image"]:hover {
+div#listBody div.list-group-item input[type="image"]:hover {
   background-color: #fdfdfd;
 }
 
-label, input[type="text"] {
+div.list-group-item, input[type="text"] {
   font-family: 'Ubuntu', sans-serif;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -39,15 +39,13 @@ $(function(){
       if (editMode) return;
 
       const taskId = $(this).parent().attr('id');
-      const listText = $(this).prev()[0];
-      const inputVal = $(listText).text();
+      const listText = $(this).prev().children()[0];
 
       const savedList = localStorage.getItem('savedList');
       const parsedList = JSON.parse(savedList);
-      
+      console.log(this.checked);
       if (this.checked) {  
         $(listText).addClass('text-muted done');
-        $(listText).html(`<del>${inputVal}</del>`);
         for (let i = 0; i < parsedList.length; i++) {
           if (parsedList[i].id === taskId) {
             parsedList[i].done = true;
@@ -56,7 +54,6 @@ $(function(){
         }
       } else {
         $(listText).removeClass('text-muted done');
-        $(listText).html(inputVal);
         for (let i = 0; i < parsedList.length; i++) {
           if (parsedList[i].id === taskId) {
             parsedList[i].done = false;
@@ -87,7 +84,7 @@ $(function(){
       changeCount();
     });
 
-    $('.edit-task-name').click(function() {
+    $('.edit-task-name').click(function(){
       if (!editMode) return;
       
       const valText = $($(this).prev()[0]).text();
@@ -108,10 +105,10 @@ $(function(){
     const parsedList = JSON.parse(savedList);
     parsedList.map(task => {
       $('#listBody div#tasksContainer').append(`
-        <label class="list-group-item py-2 ps-3 d-flex" id="${task.id}">
+        <div class="list-group-item py-2 ps-3 d-flex" id="${task.id}">
           ${ 
             task.done 
-              ? `<span class="text-muted done task-name"><del>${task.name}</del>` 
+              ? `<span class="task-name"><span class="text-muted done">${task.name}</span>` 
               : `<span class="task-name"><span>${task.name}</span>`
           }
           <input type="image" class="edit-task-name" src="img/icon/pen-to-square-solid.svg" 
@@ -119,7 +116,7 @@ $(function(){
           </span>
           <input type="checkbox" class="form-check-input ms-auto me-1 shadow-none task-done d-block" ${task.done ? "checked" : ""}/> 
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-none" alt="delete task" />
-        </label>
+        </div>
       `);
     });
   }
@@ -175,7 +172,7 @@ $(function(){
     const parsedList = JSON.parse(savedList);
 
     $('#modalInput').attr('taskId', '');
-    $($(`label[id="${taskId}"] span.task-name`).children()[0]).text(inputVal);
+    $($(`div[id="${taskId}"] span.task-name`).children()[0]).text(inputVal);
 
     for (let i = 0; i < parsedList.length; i++) {
       if (parsedList[i].id === taskId) {
@@ -194,7 +191,7 @@ $(function(){
     if (inputVal === '') return;
 
     $('#listBody div#tasksContainer').append(`
-      <label class="list-group-item py-2 ps-3 d-flex" id="${eleId}">
+      <div class="list-group-item py-2 ps-3 d-flex" id="${eleId}">
         <span class="task-name">
           <span>${inputVal}</span>
           <input type="image" class="edit-task-name" src="img/icon/pen-to-square-solid.svg" 
@@ -205,7 +202,7 @@ $(function(){
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-block" alt="delete task" />' 
           : '<input type="checkbox" class="form-check-input ms-auto me-1 shadow-none task-done d-block" /> \
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-none" alt="delete task" />'}
-      </label>
+      </div>
     `);
 
     // Saving to Local Storage

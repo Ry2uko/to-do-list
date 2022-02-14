@@ -87,7 +87,7 @@ div
     div#tasksContainer
       margin: .6rem !important
 
-    label
+    div.list-group-item
       font-size: 1.3rem
         
       transition: all 0.1s
@@ -112,7 +112,7 @@ div
           margin-right: 20px
           line-height: 45px
 
-        &.done del
+        &.done
           text-decoration: line-through !important
 
       input
@@ -147,5 +147,5 @@ div
           &:hover
             background-color: $bs-muted2
     
-label, input[type="text"]
+div.list-group-item, input[type="text"]
   font-family: 'Ubuntu', sans-serif
