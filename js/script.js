@@ -88,6 +88,8 @@ $(function(){
     });
 
     $('.edit-task-name').click(function() {
+      if (!editMode) return;
+      
       const valText = $($(this).prev()[0]).text();
       const taskId = $(this).parent().parent().attr('id');
       $('#editNameModal').modal('show');
