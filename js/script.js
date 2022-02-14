@@ -95,6 +95,8 @@ $(function(){
       $('#modalInput')
       .val(valText)
       .attr('taskId', taskId);
+      
+      setTimeout(() => { $('#modalInput')[0].focus() }, 560);
     });
   }
 
