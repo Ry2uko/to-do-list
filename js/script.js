@@ -28,11 +28,26 @@ $(function(){
     return result;
   }
 
+  // Moving items in Arry to certain index
+  function arrayMove(arr, fromIndex, toIndex) {
+    const item = arr[fromIndex];
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, item);
+    return arr;
+  }
+
   // Add Event listeners; since we'll be creating new elements
   function addListeners() {
     
     new Sortable($('#tasksContainer')[0], {
-      animation: 150
+      animation: 150,
+      onEnd: e => {
+        const savedList = localStorage.getItem('savedList');
+        const parsedList = JSON.parse(savedList);
+        const newList = arrayMove(parsedList, e.oldIndex, e.newIndex);
+
+        localStorage.setItem('savedList', JSON.stringify(newList));
+      }
     });
 
     $('input[type="checkbox"]').change(function(){
