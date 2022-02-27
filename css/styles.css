@@ -78,8 +78,8 @@ div#listHeader input#deleteAll:hover {
 }
 
 div#listContainer {
-  width: 660px;
-  height: 680px;
+  width: 40%;
+  height: 74%;
   border-radius: .7rem;
 }
 
