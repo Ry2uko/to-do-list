@@ -123,16 +123,17 @@ $(function(){
         <div class="list-group-item py-2 ps-3 d-flex" id="${task.id}">
           ${ 
             task.done 
-              ? `<span class="task-name"><span class="text-muted done">${task.name}</span>` 
-              : `<span class="task-name"><span>${task.name}</span>`
+              ? `<span class="task-name"><span class="text-muted done"></span>` 
+              : `<span class="task-name"><span></span>`
           }
-          <input type="image" class="edit-task-name" src="img/icon/pen-to-square-solid.svg" 
+          <input type="image" class="edit-task-name d-none" src="img/icon/pen-to-square-solid.svg" 
           alt="edit task name" title="Edit Name" />
           </span>
           <input type="checkbox" class="form-check-input ms-auto me-1 shadow-none task-done d-block" ${task.done ? "checked" : ""}/> 
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-none" alt="delete task" />
         </div>
       `);
+      $(`div[id="${task.id}"] span.task-name span`).text(task.name)
     });
   }
 
@@ -182,6 +183,7 @@ $(function(){
   $('#editNameModal').on('hidden.bs.modal', function(){
     const inputVal = $('#modalInput').val();
     const taskId = $('#modalInput').attr('taskId');
+    if (inputVal.length === 0) return
 
     const savedList = localStorage.getItem('savedList');
     const parsedList = JSON.parse(savedList);
@@ -208,8 +210,8 @@ $(function(){
     $('#listBody div#tasksContainer').append(`
       <div class="list-group-item py-2 ps-3 d-flex" id="${eleId}">
         <span class="task-name">
-          <span>${inputVal}</span>
-          <input type="image" class="edit-task-name" src="img/icon/pen-to-square-solid.svg" 
+          <span></span>
+          <input type="image" class="edit-task-name ${editMode ? 'd-inline-block' : 'd-none'}" src="img/icon/pen-to-square-solid.svg" 
           alt="edit task name" title="Edit Name"/>
         </span>
         ${editMode 
@@ -219,6 +221,8 @@ $(function(){
           <input type="image" src="img/icon/xmark-solid.svg" class="delete-task d-none" alt="delete task" />'}
       </div>
     `);
+    
+    $(`div[id="${eleId}"] span.task-name span`).text(inputVal)
 
     // Saving to Local Storage
     const savedList = localStorage.getItem('savedList') || JSON.stringify([]);

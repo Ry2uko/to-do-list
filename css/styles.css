@@ -112,6 +112,7 @@ div#listBody div#tasksContainer {
 }
 
 div#listBody div.list-group-item {
+  overflow-wrap: anywhere;
   font-size: 1.3rem;
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
