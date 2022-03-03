@@ -183,7 +183,6 @@ $(function(){
   $('#editNameModal').on('hidden.bs.modal', function(){
     const inputVal = $('#modalInput').val();
     const taskId = $('#modalInput').attr('taskId');
-    if (inputVal.length === 0) return
 
     const savedList = localStorage.getItem('savedList');
     const parsedList = JSON.parse(savedList);
